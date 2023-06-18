@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQTT</title>
+    <link rel ="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+	<link rel ="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="index.css">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+</head>
+<body>
+<script>
+
+var chungcu1 = false;
+var CheckMK = false;
+var checkjson = false;
+var ND = "0";
+var DA = "0";
+
+
+var S1 = "0";
+var S2 = "0";
+
+var T1 = "0";
+var T2 = "0";
+
+var LineND = false;
+var LineDA = false;
+
+					
+					//=======================================
+					LineND_19 = "0";
+                    LineND_18 = "0";
+                    LineND_17 = "0";
+                    LineND_16 = "0";
+                    LineND_15 = "0";
+                    LineND_14 = "0";
+                    LineND_13 = "0";
+                    LineND_12 = "0";
+                    LineND_11 = "0";
+                    LineND_10 = "0";
+                    LineND_9 = "0";
+                    LineND_8 = "0";
+                    LineND_7 = "0";
+                    LineND_6 = "0";
+                    LineND_5 = "0";
+                    LineND_4 = "0";
+                    LineND_3 = "0";
+                    LineND_2 = "0";
+                    LineND_1 = "0";
+					LineND_0 = "0";				
+					
+					LineDA_19 = "0";
+                    LineDA_18 = "0";
+                    LineDA_17 = "0";
+                    LineDA_16 = "0";
+                    LineDA_15 = "0";
+                    LineDA_14 = "0";
+                    LineDA_13 = "0";
+                    LineDA_12 = "0";
+                    LineDA_11 = "0";
+                    LineDA_10 = "0";
+                    LineDA_9 = "0";
+                    LineDA_8 = "0";
+                    LineDA_7 = "0";
+                    LineDA_6 = "0";
+                    LineDA_5 = "0";
+                    LineDA_4 = "0";
+                    LineDA_3 = "0";
+                    LineDA_2 = "0";
+                    LineDA_1 = "0";
+					LineDA_0 = "0";				
+
+function LoadForm()
+		{
+			document.getElementById("quanlytuoicay").style.display = "block";	
+
+
+        }
+ google.charts.load('current', {'packages':['gauge']});
+     google.charts.setOnLoadCallback(drawChart);
+   function drawChart() 
+      {
+	
+		 var datanhietdo_1 = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Nhiệt độ', 80],
+        ]);
+		
+		var datadoam_1 = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Độ ẩm', 80],
+ 
+        ]);	
+		var optionsnhietdo_1 = {
+          min: 0, max: 50,
+          width: 400, height: 200,
+		  greenFrom:0, greenTo:20,
+          redFrom: 35, redTo: 50,
+          yellowFrom:20, yellowTo: 35,
+          minorTicks: 5
+        };
+		
+		
+		var optionsdoam_1 = {
+          min: 0, max: 100,
+          width: 400, height: 200,
+          greenFrom:0, greenTo:70,
+		  redFrom: 80, redTo: 100,
+          yellowFrom:70, yellowTo:80,
+          minorTicks: 5
+        };
+		
+		var chartnhietdo_1 = new google.visualization.Gauge(document.getElementById('chart_nhietdo_1')); 
+		var chart_doam1 = new google.visualization.Gauge(document.getElementById('chart_doam_1'));
+		
+		chartnhietdo_1.draw(datanhietdo_1, optionsnhietdo_1);		
+		chart_doam1.draw(datadoam_1, optionsdoam_1);
+		
+		 setInterval(function() {	  
+		  datanhietdo_1.setValue(0, 1, ND);
+          chartnhietdo_1.draw(datanhietdo_1, optionsnhietdo_1);
+		  
+		  datadoam_1.setValue(0, 1, DA);
+          chart_doam1.draw(datadoam_1, optionsdoam_1);
+		  	 
+		  
+        }, 300);
+    
+   
+    }
+	
+	google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChartLine);
+
+      function drawChartLine() {
+
+	
+		 var datalinenhietdo_1 = google.visualization.arrayToDataTable([
+			
+          ['Year', 'NHIỆT ĐỘ'],
+		  ['',  0],
+          ['',  0],
+          ['',  0],
+          ['',  0],
+          ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+        ]);
+		
+		
+		 var datalinedoam_1 = google.visualization.arrayToDataTable([
+			
+          ['Year', 'ĐỘ ẨM'],
+		  ['',  0],
+          ['',  0],
+          ['',  0],
+          ['',  0],
+          ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+		  ['',  0],
+        ]);
+		
+		var optionslinenhietdo_1 = {
+			title: 'NHIỆT ĐỘ',
+		   legend: { position: 'bottom' },
+			width: 600, height: 300,
+		  vAxis: 
+			{
+				viewWindowMode:'explicit',
+				viewWindow: 
+				{
+				  min:0,
+				   max:60,
+				},
+				tooltip: 
+				{
+						trigger: 'none'
+				},
+				annotation: 
+				{
+					1: 	{
+							style: 'none'
+						}
+				},
+				
+			},
+			legend: 
+		   {
+				position: 'none',
+				alignment:'start',
+			},
+                        
+           responsive: true, 
+		    curveType: 'function',
+            legend: { "position": 'bottom' },
+			
+            selectionMode: 'multiple',
+            tooltip: {"trigger": 'both'},
+            aggregationTarget: 'none',
+            focusTarget: "category",
+            explorer: {
+                axis: 'horizontal',
+                actions: ['dragToZoom', 'rightClickToReset']
+            },
+            crosshair: { 
+                trigger: "both",
+                orientation: 'vertical' 
+            },
+			
+			
+			scales:
+			{
+				y:
+				{
+					beginAtZero: true,
+				}
+			},
+			chartArea: {
+				backgroundColor: {
+					stroke: '#2C6700',
+					strokeWidth: 3,
+				
+				}
+			},
+			stroke: {
+			  curve: 'smooth',
+			},
+			fill: {
+				type: "gradient",
+				gradient: {
+				  shadeIntensity: 1,
+				  opacityFrom: 0.7,
+				  opacityTo: 0.9,
+				  stops: [0, 90, 100]
+				}
+			},	
+			
+		};
+		
+		
+		var optionslinedoam_1 = {
+          title: 'ĐỘ ẨM',
+		   legend: { position: 'bottom' },
+			width: 600, height: 300,
+		  vAxis: 
+			{
+				viewWindowMode:'explicit',
+				viewWindow: 
+				{
+				  min:0,
+				   max:100,
+				},
+				tooltip: 
+				{
+						trigger: 'none'
+				},
+				annotation: 
+				{
+					1: 	{
+							style: 'none'
+						}
+				},
+				
+			},
+			legend: 
+		   {
+				position: 'none',
+				alignment:'start',
+			},
+                        
+           responsive: true, 
+		    curveType: 'function',
+            legend: { "position": 'bottom' },
+			
+            selectionMode: 'multiple',
+            tooltip: {"trigger": 'both'},
+            aggregationTarget: 'none',
+            focusTarget: "category",
+            explorer: {
+                axis: 'horizontal',
+                actions: ['dragToZoom', 'rightClickToReset']
+            },
+            crosshair: { 
+                trigger: "both",
+                orientation: 'vertical' 
+            },
+			
+			
+			scales:
+			{
+				y:
+				{
+					beginAtZero: true,
+				}
+			},
+			chartArea: {
+				backgroundColor: {
+					stroke: '#2C6700',
+					strokeWidth: 3,
+				
+				}
+			},
+			stroke: {
+			  curve: 'smooth',
+			},
+			fill: {
+				type: "gradient",
+				gradient: {
+				  shadeIntensity: 1,
+				  opacityFrom: 0.7,
+				  opacityTo: 0.9,
+				  stops: [0, 90, 100]
+				}
+			},	
+			
+		};
+ 
+		 
+		var chartlinenhietdo_1 = new google.visualization.LineChart(document.getElementById('line_nhietdo_1'));
+		var chartlinedoam_1 = new google.visualization.LineChart(document.getElementById('line_doam_1'));
+		
+		
+		chartlinenhietdo_1.draw(datalinenhietdo_1, optionslinenhietdo_1);
+		chartlinedoam_1.draw(datalinedoam_1, optionslinedoam_1);
+				
+				
+				//======================================================
+				
+		  setInterval(function() {
+            if(LineND)
+            {
+                console.log("LineND_0:" + LineND_0);
+                  
+                    datalinenhietdo_1.setValue(19, 1, LineND_0);                   
+                    datalinenhietdo_1.setValue(18, 1, LineND_1);                  
+                    datalinenhietdo_1.setValue(17, 1, LineND_2);                   
+                    datalinenhietdo_1.setValue(16, 1, LineND_3);                  
+                    datalinenhietdo_1.setValue(15, 1, LineND_4);                  
+                    datalinenhietdo_1.setValue(14, 1, LineND_5);                   
+                    datalinenhietdo_1.setValue(13, 1, LineND_6);                   
+                    datalinenhietdo_1.setValue(12, 1, LineND_7);                   
+                    datalinenhietdo_1.setValue(11, 1, LineND_8);                  
+                    datalinenhietdo_1.setValue(10, 1, LineND_9);                  
+                    datalinenhietdo_1.setValue(9, 1, LineND_10);                 
+                    datalinenhietdo_1.setValue(8, 1, LineND_11);                  
+                    datalinenhietdo_1.setValue(7, 1, LineND_12);                  
+                    datalinenhietdo_1.setValue(6, 1, LineND_13);                 
+                    datalinenhietdo_1.setValue(5, 1, LineND_14);                
+                    datalinenhietdo_1.setValue(4, 1, LineND_15);                
+                    datalinenhietdo_1.setValue(3, 1, LineND_16);                 
+                    datalinenhietdo_1.setValue(2, 1, LineND_17);                   
+                    datalinenhietdo_1.setValue(1, 1, LineND_18);  
+                    datalinenhietdo_1.setValue(0, 1, LineND_19);
+                    chartlinenhietdo_1.draw(datalinenhietdo_1, optionslinenhietdo_1);
+                    
+                    LineND_19 = LineND_18;
+                    LineND_18 = LineND_17;
+                    LineND_17 = LineND_16;
+                    LineND_16 = LineND_15;
+                    LineND_15 = LineND_14;
+                    LineND_14 = LineND_13;
+                    LineND_13 = LineND_12;
+                    LineND_12 = LineND_11;
+                    LineND_11 = LineND_10;
+                    LineND_10 = LineND_9;
+                    LineND_9 = LineND_8;
+                    LineND_8 = LineND_7;
+                    LineND_7 = LineND_6;
+                    LineND_6 = LineND_5;
+                    LineND_5 = LineND_4;
+                    LineND_4 = LineND_3;
+                    LineND_3 = LineND_2;
+                    LineND_2 = LineND_1;
+                    LineND_1 = LineND_0;          
+				    LineND = false;
+            }
+			
+                    
+                }, 300); 
+				
+				
+		 setInterval(function() {
+            if(LineDA)
+            {
+                console.log("LineDA_0:" + LineDA_0);
+                  
+                    datalinedoam_1.setValue(19, 1, LineDA_0);                   
+                    datalinedoam_1.setValue(18, 1, LineDA_1);                  
+                    datalinedoam_1.setValue(17, 1, LineDA_2);                   
+                    datalinedoam_1.setValue(16, 1, LineDA_3);                  
+                    datalinedoam_1.setValue(15, 1, LineDA_4);                  
+                    datalinedoam_1.setValue(14, 1, LineDA_5);                   
+                    datalinedoam_1.setValue(13, 1, LineDA_6);                   
+                    datalinedoam_1.setValue(12, 1, LineDA_7);                   
+                    datalinedoam_1.setValue(11, 1, LineDA_8);                  
+                    datalinedoam_1.setValue(10, 1, LineDA_9);                  
+                    datalinedoam_1.setValue(9, 1, LineDA_10);                 
+                    datalinedoam_1.setValue(8, 1, LineDA_11);                  
+                    datalinedoam_1.setValue(7, 1, LineDA_12);                  
+                    datalinedoam_1.setValue(6, 1, LineDA_13);                 
+                    datalinedoam_1.setValue(5, 1, LineDA_14);                
+                    datalinedoam_1.setValue(4, 1, LineDA_15);                
+                    datalinedoam_1.setValue(3, 1, LineDA_16);                 
+                    datalinedoam_1.setValue(2, 1, LineDA_17);                   
+                    datalinedoam_1.setValue(1, 1, LineDA_18);  
+                    datalinedoam_1.setValue(0, 1, LineDA_19);
+                    chartlinedoam_1.draw(datalinedoam_1, optionslinedoam_1);
+                    
+                    LineDA_19 = LineDA_18;
+                    LineDA_18 = LineDA_17;
+                    LineDA_17 = LineDA_16;
+                    LineDA_16 = LineDA_15;
+                    LineDA_15 = LineDA_14;
+                    LineDA_14 = LineDA_13;
+                    LineDA_13 = LineDA_12;
+                    LineDA_12 = LineDA_11;
+                    LineDA_11 = LineDA_10;
+                    LineDA_10 = LineDA_9;
+                    LineDA_9 = LineDA_8;
+                    LineDA_8 = LineDA_7;
+                    LineDA_7 = LineDA_6;
+                    LineDA_6 = LineDA_5;
+                    LineDA_5 = LineDA_4;
+                    LineDA_4 = LineDA_3;
+                    LineDA_3 = LineDA_2;
+                    LineDA_2 = LineDA_1;
+                    LineDA_1 = LineDA_0;          
+				    LineDA = false;
+            }
+			
+			
+                    
+                }, 300); 
+				
+				
+				
+
+
+var hostname = "ngoinhaiot.com";
+var port = 2222;
+var clientId = "Web";
+clientId += new Date().getUTCMilliseconds();
+
+var user_mqtt = "nhatquang3102";
+var pass_mqtt = "4CFDA840F1F84281";
+var topicsub = "nhatquang3102/A"; // topic nhận dữ liệu của ESP
+
+mqttClient = new Paho.MQTT.Client(hostname, port, clientId);
+mqttClient.onMessageArrived = MessageArrived;
+mqttClient.onConnectionLost = ConnectionLost;
+Connect();
+
+function Connect(){
+	mqttClient.connect({
+	useSSL: false,
+	userName: user_mqtt,
+	password: pass_mqtt,
+	onSuccess: Connected,
+	onFailure: ConnectionFailed,
+	keepAliveInterval: 10,
+	});
+}
+function Connected() {
+	console.log("Connected to broker");
+	mqttClient.subscribe(topicsub);
+}
+
+function ConnectionFailed(res) {
+	console.log("Connect failed:" + res.errorMessage);
+}
+
+function ConnectionLost(res) {
+	if (res.errorCode !== 0) {
+		console.log("Connection lost:" + res.errorMessage);
+		Connect();
+	}
+}
+
+function MessageArrived(message) 
+{
+	console.log("Data ESP:" + message.payloadString);
+	
+	
+	IsJsonString(message.payloadString);
+	
+	if(checkjson)
+	{
+	   console.log("JSON OK!!!");
+	   var  DataVDK = message.payloadString;            
+       console.log("Dữ liệu VDK:" + DataVDK);
+		
+		var DataJson = JSON.parse(DataVDK); 
+ 
+			 
+		ND =  DataJson.ND;
+		DA = DataJson.DA;
+		
+		LineND_0 = DataJson.ND;
+		
+		LineDA_0 = DataJson.DA;
+		
+		document.getElementById("ND").innerHTML = ND;
+		document.getElementById("DA").innerHTML = DA;
+		LineND = true;
+		LineDA = true;
+	}
+	else 
+	{
+		console.log("JSON Error!!!");
+	}
+	
+
+}
+
+function IsJsonString(str)
+			{
+				try
+				{
+					JSON.parse(str);
+				} 
+				catch (e)
+				{
+					checkjson = false;
+					return false;
+				}
+				checkjson = true;
+				return true;
+			} 
+
+	  }  
+
+</script>
+
+<br>
+<br>
+<center>		
+	<div id="quanlytuoicay">
+		<table width="auto" height="auto" border="2" cellpadding="10" align="center" style="overflow:auto">
+   
+               <tr> 
+				
+				 <td colspan="8" height="70"> <center> <span style="font-size: 250%;color: #2C6700;" > <b> SMART GARDEN</b> </span> </center> </td>  
+				   
+			  </tr>
+			  <tr> 
+				
+				  <td colspan="1" height="50" > <center> <span style = "color: #2C6700"> <b> NHIỆT ĐỘ</b> </span> </center> </td> 
+				   <td colspan="3" > <center> <span style = "color: #2C6700"> <b>BIỂU ĐỒ ĐƯỜNG NHIỆT ĐỘ</b> </span> </center> </td>
+				   
+				    
+			  </tr>
+			  <tr> 
+					  <td colspan="1"  >   
+						<center>       
+							<h1 id="ND"style="color:#2C6700;">0</h1>
+							<div id="chart_nhietdo_1"></div>
+						</center>
+					  </td>
+					  
+						<td colspan="3" >   
+						<center>        
+							
+							<div id="line_nhietdo_1" ></div>
+						</center>
+						</td>					   
+			  </tr>
+			  <tr>
+				<td colspan="1" height="50"> <center> <span style = "color: #2C6700"> <b> ĐỘ ẨM</b> </span> </center> </td> 
+			 <td colspan="3" > <center> <span style = "color: #2C6700"> <b>BIỂU ĐỒ ĐƯỜNG ĐỘ ẨM</b> </span> </center> </td>
+		  </tr>    
+			 
+			</td> 
+					  
+			<td colspan="1" > 
+			  <center> 
+				<h1 id="DA"style="color:#2C6700;">0</h1>
+				<div id="chart_doam_1"></div>
+		  
+			  </center> 
+		  </td>  
+		  
+		  <td colspan="3" > 
+			  <center> 
+	
+  
+				<div id="line_doam_1"></div>
+		  
+			  </center> 
+		  </td> 
+				
+		  
+			 
+			  
+		</table>	  
+	</div>
+	<br>
+	<br>
+	
+</center>
+
+</body>
+
+</html>
